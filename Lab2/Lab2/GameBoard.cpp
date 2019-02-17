@@ -6,6 +6,8 @@
 #include <vector>
 using namespace std;
 
+int readBoard(ifstream & file, unsigned int & b, unsigned int & c);
+
 int readBoard(ifstream & file, unsigned int & b, unsigned int & c) 
 {
 	string newbie;

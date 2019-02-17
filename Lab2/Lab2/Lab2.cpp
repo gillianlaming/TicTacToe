@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Header.h"
+#include "GameBoard.h"
+#include "GamePieces.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -15,7 +17,20 @@ int main(int argc, char * argv[])
 	if (argc > commandLineArguments) {
 		return messageFunct(argv[programName]);
 	}
-
+	//construct and open an input file stream
+	ifstream ifs(argv[inputFile]);
+	if (ifs.is_open()) {
+		unsigned int horizontal;
+		unsigned int vertical;
+		int x = readBoard(ifs, horizontal, vertical);
+		while (x == cannotExtractDemensions) 
+		{
+			x = readBoard(ifs, horizontal, vertical)
+		}
+	}
+	else {
+		return unableToOpenFileFailure; //unable to open file failure
+	}
 	return success;
 
 }
