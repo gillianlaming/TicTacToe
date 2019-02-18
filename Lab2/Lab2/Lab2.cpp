@@ -27,6 +27,7 @@ int main(int argc, char * argv[])
 		{
 			x = readBoard(ifs, horizontal, vertical);
 		}
+		//the program should declare a vector of game pieces and then for each position on the board
 	}
 	else {
 		return unableToOpenFileFailure; //unable to open file failure

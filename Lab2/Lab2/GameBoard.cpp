@@ -15,17 +15,18 @@ int readBoard(ifstream & file, unsigned int & b, unsigned int & c)
 	
 	if (file.is_open()) //open that file up
 	{
+		//tested: this part is working
 		//do once
 		getline(file, newbie);
 		istringstream iss(newbie);
 		iss >> b;
-		cout << b << endl;
-		//how to read result?? is it boolean??
+		cout << "first int " << b << endl;
+		
 
 		//do again
 		getline(file, newbie);
 		iss >> c;
-		cout << c << endl;
+		cout << "second int " << c << endl;
 		
 		return success;
 
@@ -37,8 +38,18 @@ int readBoard(ifstream & file, unsigned int & b, unsigned int & c)
 	//return unique value for each case
 }
 
-int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int row, unsigned int col)
+int readPieces(ifstream & file, vector<game_piece> & positions, unsigned int row, unsigned int col)
 {
+	string hello;
+	vector<string> b;
+	while (!file.eof()) { //while it's not the end of the file 
+		getline(file, hello);
+		istringstream iss(hello);
+		iss >> hello; //wrap in input stream
+		cout << hello << endl; //for debugging, print off the string
+		b.push_back(hello);
+	}
+	
 	//function should then wrap the string variable in an input string stream and use the input string stream's >> (extraction) operator to extract five values from the string
 	//1) a string for the color of the game piece, 
 	//(2) a string for the name of the game piece, 
