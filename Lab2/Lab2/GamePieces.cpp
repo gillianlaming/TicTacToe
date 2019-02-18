@@ -20,24 +20,29 @@ int lowerCaseMe(string & a) {
 
 string noName(piece_color color)
 {
-	//returns (again by value) the element of the enumerated type
-	//(e.g., piece_color) that corresponds to that string.
 	int val = color;
-	string enumColors[] = { "red", "black", "white", "invalidColor", "noColor" };
-	//go thru enum of type piece_color
-	//find string that matches param
-	//return index of that element
-
-	//call lowerCaseMe from this!!
-	return enumColors[val];
+	string enumColors[] = { "red", "black", "white", "invalidColor", "noColor" }; //all the enum vals
+	return enumColors[val]; //return string at array element of the piece_color
 }
 
-int game_piece::whatColor(string color) 
+int game_piece::whatColor(string color) //not sure if setup for this function is correct
 {
-
-
-	return piece_color::red;
-
+	//this is so inefficient. is there a better way?
+	if (color == "red") {
+		return red;
+	}
+	if (color == "black") {
+		return black;
+	}
+	if (color == "white") {
+		return white;
+	}
+	if (color == " ") { //how to handle any string containing only whitespace?
+		return noColor;
+	}
+	else {
+		return invalidColor;
+	}
 }
 
 
