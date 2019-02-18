@@ -4,7 +4,7 @@ using namespace std;
 
 enum piece_color {red, black, white, invalidColor, noColor};
 
-int whatColor(string color);
+piece_color whatColor(string color);
 
 int lowerCaseMe(string & a);
 string noName(piece_color color);

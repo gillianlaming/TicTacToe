@@ -38,37 +38,76 @@ int readBoard(ifstream & file, unsigned int & b, unsigned int & c)
 	//return unique value for each case
 }
 
-int readPieces(ifstream & file, vector<game_piece> & positions, unsigned int row, unsigned int col)
+int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width, unsigned int height)
 {
 	string hello;
-	vector<string> b;
 	string pieceColor;
 	string pieceName;
 	string displayPiece; 
-	unsigned int horPos;
-	unsigned int vertPos;
-	while (!file.eof()) { //while it's not the end of the file 
-		getline(file, hello);
-		istringstream iss(hello);
-		iss >> hello; //wrap in input stream
-		cout << hello << endl; //for debugging, print off the string
-		b.push_back(hello); //how to do this??
+	unsigned int col;
+	unsigned int row;
+	bool apple = true;
+	while (!file.eof()) { //while it's not the end of the file
+		if (getline(file, hello)) {
+			getline(file, hello);
+			istringstream iss(hello);
+			iss >> pieceColor; //wrap in input stream
+			cout << pieceColor << endl; //for debugging, print off the string
+		}
+		else {
+			apple = false;
+		}
+		if (getline(file, hello)) {
+			getline(file, hello);
+			istringstream iss(hello);
+			iss >> pieceName; //wrap in input stream
+			cout << pieceName << endl; //for debugging, print off the string
+		}
+		else {
+			apple = false;
+		}
+		if (getline(file, hello)) {
+			getline(file, hello);
+			istringstream iss(hello);
+			iss >> displayPiece; //wrap in input stream
+			cout << displayPiece << endl; //for debugging, print off the string
+		}
+		else {
+			apple = false;
+		}
+		if (getline(file, hello)) {
+			getline(file, hello);
+			istringstream iss(hello);
+			iss >> col; //wrap in input stream
+			cout << col << endl; //for debugging, print off the string
+		}
+		else {
+			apple = false;
+		}
+		if (getline(file, hello)) {
+			getline(file, hello);
+			istringstream iss(hello);
+			iss >> row; //wrap in input stream
+			cout << row << endl; //for debugging, print off the string
+		}
+		else {
+			apple = false;
+		}
+		if (apple) { //extraction was a success
+			piece_color colorMe = whatColor(pieceColor); //(1) convert the first string into an enumeration value for the game piece color
+			if (colorMe == invalidColor) {
+				//do something
+			}
+			else if (!(row > height || col > width)) { //is the boolean still correct here after i used !
+				int index = width*row + col;
+				pieces[index].color = colorMe;
+
+
+			}
+		}
+		
 	}
-	if (b.size() != 5) {//b should (hopefully) contain 5 values
-		return inputFileWrongSize;
-	}
-	else {
-		pieceColor = b[0]; //1) a string for the color of the game piece,
-		pieceName = b[1]; //(2) a string for the name of the game piece, 
-		displayPiece = b[2];	//(3) a string with which to display the game piece when the game board is printed out, 
-		horPos = b[3];	//(4) an unsigned integer for the horizontal position of the piece on the game board, and 
-		vertPos = b[4];  //(5) an unsigned integer for the vertical position of the piece on the game board.
-	}
-	int colorMe = whatColor(pieceColor); //(1) convert the first string into an enumeration value for the game piece color
-	if (colorMe == invalidColor) {
-		//do something
-	}
-										 //(2) compare the values of the horizontal and vertical coordinates of the game piece to the horizontal and vertical dimensions of the game board.
+
 
 	
 	
