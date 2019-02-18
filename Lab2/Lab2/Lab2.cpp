@@ -42,16 +42,5 @@ int messageFunct(const char * a) //takes a C style string or a reference to a co
 	return commandLineFail; //return failure number
 }
 
-int lowerCaseMe(string & a) {
-	//modifies that string so that all of the alphabetic characters in it become lowercase
-	for (char& c : a) { //iterate char by char thru string
-		if (isupper(c)) {
 
-			char d = tolower(c); //convert the character to lowercase
-			c = d; //replace the uppercase string w lowercase string
-		}
-	}
-	return success;
-
-}
 
