@@ -25,7 +25,7 @@ string noName(piece_color color)
 	return enumColors[val]; //return string at array element of the piece_color
 }
 
-int game_piece::whatColor(string color) //not sure if setup for this function is correct
+int whatColor(string color) 
 {
 	//this is so inefficient. is there a better way?
 	if (color == "red") {

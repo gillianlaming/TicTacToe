@@ -4,22 +4,37 @@
 #include "Header.h"
 #include "string"
 #include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 using namespace std;
 
 int readBoard(ifstream & file, unsigned int & b, unsigned int & c) 
 {
 	string newbie;
+	
+	if (file.is_open()) //open that file up
+	{
+		//do once
+		getline(file, newbie);
+		istringstream iss(newbie);
+		iss >> b;
+		cout << b << endl;
+		//how to read result?? is it boolean??
 
-	//call the C++ IO library's getline function with the input file stream and the string
-	//wrap the string variable in an input string stream and use the input string stream's >>
-	//(extraction) operator to extract a value from the string into the first unsigned integer
-	//parameter and then use it again to extract another value from the string into the second
-	//unsigned integer parameter.
+		//do again
+		getline(file, newbie);
+		iss >> c;
+		cout << c << endl;
+		
+		return success;
 
-
+	}
+	else {
+		return unableToOpenFileFailure;
+	}
 	//check all 3 return values 
 	//return unique value for each case
-	return success;
 }
 
 int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int row, unsigned int col)
