@@ -23,9 +23,9 @@ int main(int argc, char * argv[])
 		unsigned int horizontal;
 		unsigned int vertical;
 		int x = readBoard(ifs, horizontal, vertical);
-		while (x == cannotExtractDemensions) 
+		while (x == cannotExtractDemensions)
 		{
-			x = readBoard(ifs, horizontal, vertical)
+			x = readBoard(ifs, horizontal, vertical);
 		}
 	}
 	else {
