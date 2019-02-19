@@ -84,15 +84,16 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 	return success;
 }
 
-int printBoard(const vector<game_piece> & board, unsigned int row, unsigned int col)
+int printBoard(const vector<game_piece> & board, unsigned int width, unsigned int height)
 {
 	int a = board.size();
-	if (a != row*col) { //is this the correct way to do this?
+	if (a != width*height) { //is this the correct way to do this?
 		return wrongBoardDimensions;
 	}
-	for (int i = 0; i < col; i++) {
-		for (int j = 0; j < row; j++) {
-
+	for (int c = 0; c < width; c++) {
+		for (int r = height; r > 0; r++) { //start at top lefthand corner and work across and then down
+			int index = width*r + c;
+			cout << board[index].display << endl;
 		}
 	}
 	return success;
