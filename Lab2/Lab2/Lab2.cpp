@@ -23,23 +23,25 @@ int main(int argc, char * argv[])
 		unsigned int horizontal;
 		unsigned int vertical;
 		int x = readBoard(ifs, horizontal, vertical);
+		
 		while (x == cannotExtractDemensions)
 		{
 			x = readBoard(ifs, horizontal, vertical);
 		}
+		cout << "here!" << endl;
 		vector<game_piece> gameTime; //the program should declare a vector of game pieces and then for each position on the board
 		
-		for (int j = 0; j < vertical; j++) {
-			for (int i = 0; i < horizontal; i++) {
+		for (unsigned int j = 0; j < vertical; j++) {
+			for (unsigned int i = 0; i < horizontal; i++) {
 				game_piece newPiece;
 				newPiece.color = noColor;
-				newPiece.display = ""; 
+				newPiece.display = " "; 
 				newPiece.name = "";
-				int index = horizontal*i + j;
-				gameTime[index] = newPiece;
+				//int index = horizontal*i + j;
+				gameTime.push_back(newPiece);
 			}
 		}
-		if (! readPieces(ifs, gameTime, horizontal, vertical)) {
+		if (!(readPieces(ifs, gameTime, horizontal, vertical)==0)) {
 			return cantReadPieces;
 		}
 

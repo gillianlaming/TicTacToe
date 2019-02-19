@@ -48,29 +48,29 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 
 		istringstream iss(hello); // wrap in iss
 		if (!(iss >> pieceColor)) {// if cant read into piecename -> return something
-			return unableToExtract;
+			continue;
 		}
 		if (!(iss >> pieceName)) { //if cannot read into piececolor -> return failure
-			return unableToExtract;
+			continue;
 		}
 		if (!(iss >> displayPiece)) { //if cannot read into displayPiece -> return failure
-			return unableToExtract;
+			continue;
 		}
 		if (!(iss >> col)) { //if cannot read into col -> return failure
-			return unableToExtract;
+			continue;
 		}
 		if (!(iss >> row)) { //if cannot read into row -> return failure
-			return unableToExtract;
+			continue;
 		}
 		piece_color colorMe = whatColor(pieceColor); //(1) convert the first string into an enumeration value for the game piece color
 		if (colorMe == invalidColor) {
-			return badColor;
+			continue;
 		}
 		if ((row > height || col > width)) { //is the boolean still correct here after i used !
-			return wrongBoardDimensions;
+			continue;
 		}
 		if ((row < 0 || col < 0)) {
-			return wrongBoardDimensions;
+			continue;
 		}
 		int index = width*row + col;
 		game_piece newPiece;//make the new gamepiece
@@ -90,11 +90,17 @@ int printBoard(const vector<game_piece> & board, unsigned int width, unsigned in
 	if (a != width*height) { //is this the correct way to do this?
 		return wrongBoardDimensions;
 	}
-	for (int c = 0; c < width; c++) {
-		for (int r = height; r > 0; r++) { //start at top lefthand corner and work across and then down
+	int bf = height - 1;
+	for (unsigned int c = 0; c < width; c++) {
+		for (unsigned int r = bf; r >= 0; r--) { //start at top lefthand corner and work across and then down
+			//int index = (c+1)*r + c;
+			if (r > height) {
+				break;
+			}
 			int index = width*r + c;
-			cout << board[index].display << endl;
+			cout << board[index].display;
 		}
+		cout << "" << endl;
 	}
 	return success;
 }
