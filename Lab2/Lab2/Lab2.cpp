@@ -27,8 +27,7 @@ int main(int argc, char * argv[])
 		
 		while (x == cannotExtractDemensions)
 		{
-			//x = readBoard(ifs, horizontal, vertical);
-			continue; //I THINK THIS IS THE ISSUE
+			x = readBoard(ifs, horizontal, vertical); //is this the issue?
 		}
 		
 		
