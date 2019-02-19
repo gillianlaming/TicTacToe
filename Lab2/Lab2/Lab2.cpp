@@ -28,7 +28,6 @@ int main(int argc, char * argv[])
 		{
 			x = readBoard(ifs, horizontal, vertical);
 		}
-		cout << "here!" << endl;
 		vector<game_piece> gameTime; //the program should declare a vector of game pieces and then for each position on the board
 		
 		for (unsigned int j = 0; j < vertical; j++) {

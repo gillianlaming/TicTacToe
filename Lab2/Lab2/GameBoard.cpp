@@ -72,6 +72,7 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 		if ((row < 0 || col < 0)) {
 			continue;
 		}
+		//width * row + col 
 		int index = width*row + col;
 		game_piece newPiece;//make the new gamepiece
 		newPiece.color = colorMe;
@@ -93,7 +94,7 @@ int printBoard(const vector<game_piece> & board, unsigned int width, unsigned in
 	int bf = width - 1;
 	for (unsigned int c = 0; c < height; c++) {
 		for (unsigned int r = bf; r >= 0; r--) { //start at top lefthand corner and work across and then down
-			//int index = (c+1)*r + c;
+												 //int index = (c+1)*r + c;
 			if (r > height) {
 				break;
 			}
