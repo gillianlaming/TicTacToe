@@ -22,12 +22,16 @@ int main(int argc, char * argv[])
 	if (ifs.is_open()) {
 		unsigned int horizontal;
 		unsigned int vertical;
+		
 		int x = readBoard(ifs, horizontal, vertical);
 		
 		while (x == cannotExtractDemensions)
 		{
-			x = readBoard(ifs, horizontal, vertical);
+			//x = readBoard(ifs, horizontal, vertical);
+			continue; //I THINK THIS IS THE ISSUE
 		}
+		
+		
 		vector<game_piece> gameTime; //the program should declare a vector of game pieces and then for each position on the board
 		
 		for (unsigned int j = 0; j < vertical; j++) {

@@ -96,11 +96,12 @@ int printBoard(const vector<game_piece> & board, unsigned int width, unsigned in
 	//int bf = width - 1;
 	for (unsigned int c = height - 1; c >= 0; --c)  {
 		for (unsigned int r = 0; r < width; ++r) { //start at top lefthand corner and work across and then down
-			if (c > height) {
+			//if (c > ( height-1)) {
 				//break;
-			}
+			//}
 			//width * row + col 
 			int index = width*c + r;
+			//cout << "r "<< r<< "c "<< c << endl;
 			cout << board[index].display;
 			
 		}
