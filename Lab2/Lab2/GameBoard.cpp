@@ -97,7 +97,7 @@ int printBoard(const vector<game_piece> & board, unsigned int width, unsigned in
 			if (r > height) {
 				break;
 			}
-			int index = height*c + r;
+			int index = width*c + r;
 			cout << board[index].display;
 		}
 		cout << "" << endl;
