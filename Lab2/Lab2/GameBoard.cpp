@@ -15,45 +15,19 @@ int readBoard(ifstream & file, unsigned int & b, unsigned int & c)
 	
 	if (file.is_open()) //open that file up
 	{
-		
-		bool a1 = false;
-		bool a2 = false;
-		bool a3 = false;
-		
-		//tested: this part is working
-		//do once
-		//if (getline(file, newbie)) { //for some reason this is causing issues
-			//a1 = true;
-		//}
-		getline(file, newbie);
-		istringstream iss(newbie);
-		//if (iss >> b) {
-			//a2 = true;
-		//}
-		iss >> b;
-		cout << "first int " << b << " done" << endl;
-		//if (iss >> c) {
-			//a3 = true;
-		//}
-		iss >> c;
-		cout << "second int " << c << " done" << endl;
-		return success;
-		/*
-		if ((a1 && a2) && (a1 && a3)) {
-			cout << "successfully extracted things" << endl;
-			return success;
-		}
-		else if (a1){
-			cout << "not all 3 conditions were met" << endl;
-			return cannotExtractDemensions;
-		}
-		else {
-			//unable to read in line from file
+		if (!getline(file, newbie)) { 
 			return cannotReadLine;
 		}
-		*/
-		
-		
+		istringstream iss(newbie);
+		if (!(iss >> b)) { //if cannot extract dimensions
+			return cannotExtractDemensions;
+		}
+		cout << "first int " << b << endl;
+		if (!(iss >> c)) { //if cannot extract dimensions
+			return cannotExtractDemensions;
+		}
+		cout << "second int " << c << endl;
+		return success;	
 	}
 	else {
 		return unableToOpenFileFailure;
@@ -70,9 +44,16 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 	unsigned int col;
 	unsigned int row;
 	bool apple = true;
-	while (!file.eof()) { //while it's not the end of the file
+	while (getline(file, hello)) { //while it's not the end of the file
+
+		// wrap in iss
+		// if cant read into piecename -> return something
+		// etc
+
+		// make new gamepiece
+		// put into vector
 		if (getline(file, hello)) {
-			getline(file, hello);
+			
 			istringstream iss(hello);
 			iss >> pieceColor; //wrap in input stream
 			cout << pieceColor << endl; //for debugging, print off the string
@@ -81,7 +62,7 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 			apple = false;
 		}
 		if (getline(file, hello)) {
-			getline(file, hello);
+			
 			istringstream iss(hello);
 			iss >> pieceName; //wrap in input stream
 			cout << pieceName << endl; //for debugging, print off the string
@@ -90,7 +71,7 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 			apple = false;
 		}
 		if (getline(file, hello)) {
-			getline(file, hello);
+			
 			istringstream iss(hello);
 			iss >> displayPiece; //wrap in input stream
 			cout << displayPiece << endl; //for debugging, print off the string
@@ -99,7 +80,7 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 			apple = false;
 		}
 		if (getline(file, hello)) {
-			getline(file, hello);
+			
 			istringstream iss(hello);
 			iss >> col; //wrap in input stream
 			cout << col << endl; //for debugging, print off the string
@@ -108,7 +89,7 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 			apple = false;
 		}
 		if (getline(file, hello)) {
-			getline(file, hello);
+			
 			istringstream iss(hello);
 			iss >> row; //wrap in input stream
 			cout << row << endl; //for debugging, print off the string
