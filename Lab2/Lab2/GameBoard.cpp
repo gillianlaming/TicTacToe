@@ -20,10 +20,12 @@ int readBoard(ifstream & file, unsigned int & b, unsigned int & c)
 		}
 		istringstream iss(newbie);
 		if (!(iss >> b)) { //if cannot extract dimensions
+			//continue;
 			return cannotExtractDemensions;
 		}
 		cout << "first int " << b << endl;
 		if (!(iss >> c)) { //if cannot extract dimensions
+
 			return cannotExtractDemensions;
 		}
 		cout << "second int " << c << endl;
@@ -93,16 +95,16 @@ int printBoard(const vector<game_piece> & board, unsigned int width, unsigned in
 	}
 	//int bf = width - 1;
 	for (unsigned int c = height - 1; c >= 0; --c)  {
-		for (unsigned int r = 0; r < width; r++) { //start at top lefthand corner and work across and then down
-			
+		for (unsigned int r = 0; r < width; ++r) { //start at top lefthand corner and work across and then down
+			if (c > height) {
+				//break;
+			}
 			//width * row + col 
 			int index = width*c + r;
 			cout << board[index].display;
-			if (c > height) {
-				break;
-			}
+			
 		}
-		cout << "" << endl;
+		cout <<  endl;
 	}
 	return success;
 }
