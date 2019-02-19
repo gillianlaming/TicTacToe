@@ -94,14 +94,14 @@ int printBoard(const vector<game_piece> & board, unsigned int width, unsigned in
 		return wrongBoardDimensions;
 	}
 	
-	int bf = width - 1;
 	for (unsigned int c = 0; c < height; c++) {
 		for (unsigned int r = width - 1; r >= 0; r--) { //start at top lefthand corner and work across and then down
 												 //int index = (c+1)*r + c;
 			if (r > height) {
 				break;
 			}
-			int index = width*c + r;
+			//equation = width*row + col;
+			int index = width*(height - 1 - c) + (width - 1 - r);
 			cout << board[index].display;
 		}
 		cout << "" << endl;
