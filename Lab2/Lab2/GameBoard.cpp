@@ -9,7 +9,7 @@
 #include <sstream>
 using namespace std;
 
-int readBoard(ifstream & file, unsigned int & b, unsigned int & c) 
+int readBoard(ifstream & file, unsigned int & width, unsigned int & height)
 {
 	string newbie;
 	
@@ -19,16 +19,16 @@ int readBoard(ifstream & file, unsigned int & b, unsigned int & c)
 			return cannotReadLine;
 		}
 		istringstream iss(newbie);
-		if (!(iss >> b)) { //if cannot extract dimensions
+		if (!(iss >> width)) { //if cannot extract dimensions
 			//continue;
 			return cannotExtractDemensions;
 		}
-		cout << "first int " << b << endl;
-		if (!(iss >> c)) { //if cannot extract dimensions
+		cout << "first int " << width << endl;
+		if (!(iss >> height)) { //if cannot extract dimensions
 
 			return cannotExtractDemensions;
 		}
-		cout << "second int " << c << endl;
+		cout << "second int " << height << endl;
 		return success;	
 	}
 	else {
@@ -39,47 +39,47 @@ int readBoard(ifstream & file, unsigned int & b, unsigned int & c)
 
 int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width, unsigned int height)
 {
-	string hello;
+	string placeHolder;
 	string pieceColor;
 	string pieceName;
 	string displayPiece;
 	unsigned int col;
 	unsigned int row;
 
-	while (getline(file, hello)) { //while it's not the end of the file
+	while (getline(file, placeHolder)) { //while it's not the end of the file
 
-		istringstream iss(hello); // wrap in iss
-		if (!(iss >> pieceColor)) {// if cant read into piecename -> return something
+		istringstream iss(placeHolder); // wrap in iss
+		if (!(iss >> pieceColor)) {// if cant read into piecename 
+			continue; //skip line
+		}
+		if (!(iss >> pieceName)) { //if cannot read into piececolor 
 			continue;
 		}
-		if (!(iss >> pieceName)) { //if cannot read into piececolor -> return failure
+		if (!(iss >> displayPiece)) { //if cannot read into displayPiece
 			continue;
 		}
-		if (!(iss >> displayPiece)) { //if cannot read into displayPiece -> return failure
+		if (!(iss >> col)) { //if cannot read into col
 			continue;
 		}
-		if (!(iss >> col)) { //if cannot read into col -> return failure
-			continue;
-		}
-		if (!(iss >> row)) { //if cannot read into row -> return failure
+		if (!(iss >> row)) { //if cannot read into row
 			continue;
 		}
 		piece_color colorMe = whatColor(pieceColor); //(1) convert the first string into an enumeration value for the game piece color
 		if (colorMe == invalidColor) {
 			continue;
 		}
-		if ((row > height || col > width)) { //is the boolean still correct here after i used !
+		if ((row > height || col > width)) { //if the parameters for board size are out of bounds -- too big
 			continue;
 		}
-		if ((row < 0 || col < 0)) {
+		if ((row < 0 || col < 0)) { //if the parameters for board size are out of bounds -- too small
 			continue;
 		}
-		//width * row + col 
-		int index = width*row + col;
+
+		int index = width*row + col; //calculate index based on equation given
 		game_piece newPiece;//make the new gamepiece
-		newPiece.color = colorMe;
-		newPiece.display = displayPiece;
-		newPiece.name = pieceName;
+		newPiece.color = colorMe; //set color to extracted color
+		newPiece.display = displayPiece; // set display to extracted display
+		newPiece.name = pieceName; //set name to extracted name
 		pieces[index] = newPiece; // put into vector
 
 	}
@@ -89,14 +89,14 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 
 int printBoard(const vector<game_piece> & board, unsigned int width, unsigned int height)
 {
-	int a = board.size();
-	if (a != width*height) { //is this the correct way to do this?
+	int theSize = board.size();
+	if (theSize != width*height) { //if extracted size does not match size of board
 		return wrongBoardDimensions;
 	}
-	//int bf = width - 1;
+	
 	int bf = width - 1;
 	for (unsigned int c = 0; c < height; c++) {
-		for (unsigned int r = bf; r >= 0; r--) { //start at top lefthand corner and work across and then down
+		for (unsigned int r = width - 1; r >= 0; r--) { //start at top lefthand corner and work across and then down
 												 //int index = (c+1)*r + c;
 			if (r > height) {
 				break;

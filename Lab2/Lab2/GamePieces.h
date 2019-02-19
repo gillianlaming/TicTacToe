@@ -2,14 +2,16 @@
 #include <string>
 using namespace std;
 
+//enum definition
 enum piece_color {red, black, white, invalidColor, noColor};
 
+//function definitons
 piece_color whatColor(string color);
-
-int lowerCaseMe(string & a);
+int lowerCaseMe(string & uppercaseString);
 string noName(piece_color color);
-//int piece_color whatColor(string color);
 
+
+//struct definition
 struct game_piece {
 	
 	string name; //why doesn't it like this?

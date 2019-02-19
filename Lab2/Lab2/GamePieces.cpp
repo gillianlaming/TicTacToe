@@ -5,9 +5,9 @@
 using namespace std;
 
 
-int lowerCaseMe(string & a) {
+int lowerCaseMe(string & uppercaseString) {
 	//modifies that string so that all of the alphabetic characters in it become lowercase
-	for (char& c : a) { //iterate char by char thru string
+	for (char& c : uppercaseString) { //iterate char by char thru string
 		if (isupper(c)) {
 
 			char d = tolower(c); //convert the character to lowercase

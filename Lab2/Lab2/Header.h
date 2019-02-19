@@ -1,8 +1,11 @@
 #pragma once
 
-int messageFunct(const char * a);
+//function definitions
+int messageFunct(const char * programName);
 
 int fileFailure();
+
+//enum definitions
 enum inputs { programName, inputFile, commandLineArguments };
 
 enum results { success, commandLineFail, unableToOpenFileFailure, cannotExtractDemensions, inputFileWrongSize, wrongBoardDimensions, cannotReadLine, badColor, unableToExtract, cantReadPieces}; //specify each failure
