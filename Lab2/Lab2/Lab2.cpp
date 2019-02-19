@@ -8,7 +8,7 @@
 #include <sstream>
 using namespace std;
 
-int messageFunct(const char * a);
+
 
 int main(int argc, char * argv[])
 {
@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
 		//the program should declare a vector of game pieces and then for each position on the board
 	}
 	else {
-		return unableToOpenFileFailure; //unable to open file failure
+		return fileFailure();
 	}
 	return success;
 
@@ -43,5 +43,9 @@ int messageFunct(const char * a) //takes a C style string or a reference to a co
 	return commandLineFail; //return failure number
 }
 
+int fileFailure() {
+	cout << "the file was not able to be opened" << endl;
+	return unableToOpenFileFailure; //unable to open file failure
+}
 
 

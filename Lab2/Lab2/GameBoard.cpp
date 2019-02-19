@@ -15,27 +15,50 @@ int readBoard(ifstream & file, unsigned int & b, unsigned int & c)
 	
 	if (file.is_open()) //open that file up
 	{
+		
+		bool a1 = false;
+		bool a2 = false;
+		bool a3 = false;
+		
 		//tested: this part is working
 		//do once
+		//if (getline(file, newbie)) { //for some reason this is causing issues
+			//a1 = true;
+		//}
 		getline(file, newbie);
 		istringstream iss(newbie);
+		//if (iss >> b) {
+			//a2 = true;
+		//}
 		iss >> b;
-		cout << "first int " << b << endl;
-		
-
-		//do again
-		getline(file, newbie);
+		cout << "first int " << b << " done" << endl;
+		//if (iss >> c) {
+			//a3 = true;
+		//}
 		iss >> c;
-		cout << "second int " << c << endl;
-		
+		cout << "second int " << c << " done" << endl;
 		return success;
-
+		/*
+		if ((a1 && a2) && (a1 && a3)) {
+			cout << "successfully extracted things" << endl;
+			return success;
+		}
+		else if (a1){
+			cout << "not all 3 conditions were met" << endl;
+			return cannotExtractDemensions;
+		}
+		else {
+			//unable to read in line from file
+			return cannotReadLine;
+		}
+		*/
+		
+		
 	}
 	else {
 		return unableToOpenFileFailure;
 	}
-	//check all 3 return values 
-	//return unique value for each case
+
 }
 
 int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width, unsigned int height)
