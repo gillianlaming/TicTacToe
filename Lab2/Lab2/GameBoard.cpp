@@ -101,6 +101,8 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 			else if (!(row > height || col > width)) { //is the boolean still correct here after i used !
 				int index = width*row + col;
 				pieces[index].color = colorMe;
+				pieces[index].name = pieceName;
+
 
 
 			}
@@ -114,7 +116,18 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 	return success;
 }
 
-int printBoard(const vector<game_piece> & board, unsigned int a, unsigned int b)
+int printBoard(const vector<game_piece> & board, unsigned int row, unsigned int col)
 {
+	int a = board.size();
+	if (a != row*col) { //is this the correct way to do this?
+		return wrongBoardDimensions;
+	}
+	for (int i = 0; i < col; i++) {
+		for (int j = 0; j < row; j++) {
+
+		}
+	}
 	return success;
 }
+
+
