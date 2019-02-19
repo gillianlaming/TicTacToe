@@ -23,12 +23,12 @@ int readBoard(ifstream & file, unsigned int & width, unsigned int & height)
 			//continue;
 			return cannotExtractDemensions;
 		}
-		cout << "first int " << width << endl;
+		//cout << "first int " << width << endl;
 		if (!(iss >> height)) { //if cannot extract dimensions
 
 			return cannotExtractDemensions;
 		}
-		cout << "second int " << height << endl;
+		//cout << "second int " << height << endl;
 		return success;	
 	}
 	else {
@@ -96,12 +96,11 @@ int printBoard(const vector<game_piece> & board, unsigned int width, unsigned in
 	
 	for (unsigned int c = 0; c < height; c++) {
 		for (unsigned int r = width - 1; r >= 0; r--) { //start at top lefthand corner and work across and then down
-												 //int index = (c+1)*r + c;
-			if (r > height) {
+												
+			if (r > height) { //since the int is unsigned, you need to check this case.
 				break;
 			}
-			//equation = width*row + col;
-			int index = width*(height - 1 - c) + (width - 1 - r);
+			int index = width*(height - 1 - c) + (width - 1 - r); //you need to invert both the row and columns
 			cout << board[index].display;
 		}
 		cout << "" << endl;
