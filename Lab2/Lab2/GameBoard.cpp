@@ -40,83 +40,47 @@ int readPieces(ifstream & file, vector<game_piece> & pieces, unsigned int width,
 	string hello;
 	string pieceColor;
 	string pieceName;
-	string displayPiece; 
+	string displayPiece;
 	unsigned int col;
 	unsigned int row;
-	bool apple = true;
+
 	while (getline(file, hello)) { //while it's not the end of the file
 
-		// wrap in iss
-		// if cant read into piecename -> return something
-		// etc
+		istringstream iss(hello); // wrap in iss
+		if (!(iss >> pieceColor)) {// if cant read into piecename -> return something
+			return unableToExtract;
+		}
+		if (!(iss >> pieceName)) { //if cannot read into piececolor -> return failure
+			return unableToExtract;
+		}
+		if (!(iss >> displayPiece)) { //if cannot read into displayPiece -> return failure
+			return unableToExtract;
+		}
+		if (!(iss >> col)) { //if cannot read into col -> return failure
+			return unableToExtract;
+		}
+		if (!(iss >> row)) { //if cannot read into row -> return failure
+			return unableToExtract;
+		}
+		piece_color colorMe = whatColor(pieceColor); //(1) convert the first string into an enumeration value for the game piece color
+		if (colorMe == invalidColor) {
+			return badColor;
+		}
+		if ((row > height || col > width)) { //is the boolean still correct here after i used !
+			return wrongBoardDimensions;
+		}
+		if ((row < 0 || col < 0)) {
+			return wrongBoardDimensions;
+		}
+		int index = width*row + col;
+		game_piece newPiece;//make the new gamepiece
+		newPiece.color = colorMe;
+		newPiece.display = displayPiece;
+		newPiece.name = pieceName;
+		pieces[index] = newPiece; // put into vector
 
-		// make new gamepiece
-		// put into vector
-		if (getline(file, hello)) {
-			
-			istringstream iss(hello);
-			iss >> pieceColor; //wrap in input stream
-			cout << pieceColor << endl; //for debugging, print off the string
-		}
-		else {
-			apple = false;
-		}
-		if (getline(file, hello)) {
-			
-			istringstream iss(hello);
-			iss >> pieceName; //wrap in input stream
-			cout << pieceName << endl; //for debugging, print off the string
-		}
-		else {
-			apple = false;
-		}
-		if (getline(file, hello)) {
-			
-			istringstream iss(hello);
-			iss >> displayPiece; //wrap in input stream
-			cout << displayPiece << endl; //for debugging, print off the string
-		}
-		else {
-			apple = false;
-		}
-		if (getline(file, hello)) {
-			
-			istringstream iss(hello);
-			iss >> col; //wrap in input stream
-			cout << col << endl; //for debugging, print off the string
-		}
-		else {
-			apple = false;
-		}
-		if (getline(file, hello)) {
-			
-			istringstream iss(hello);
-			iss >> row; //wrap in input stream
-			cout << row << endl; //for debugging, print off the string
-		}
-		else {
-			apple = false;
-		}
-		if (apple) { //extraction was a success
-			piece_color colorMe = whatColor(pieceColor); //(1) convert the first string into an enumeration value for the game piece color
-			if (colorMe == invalidColor) {
-				//do something
-			}
-			else if (!(row > height || col > width)) { //is the boolean still correct here after i used !
-				int index = width*row + col;
-				pieces[index].color = colorMe;
-				pieces[index].name = pieceName;
-
-
-
-			}
-		}
-		
 	}
 
-
-	
-	
 	return success;
 }
 
