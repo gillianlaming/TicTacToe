@@ -27,11 +27,28 @@ int main(int argc, char * argv[])
 		{
 			x = readBoard(ifs, horizontal, vertical);
 		}
-		//the program should declare a vector of game pieces and then for each position on the board
+		vector<game_piece> gameTime; //the program should declare a vector of game pieces and then for each position on the board
+		
+		for (int j = 0; j < vertical; j++) {
+			for (int i = 0; i < horizontal; i++) {
+				game_piece newPiece;
+				newPiece.color = noColor;
+				newPiece.display = ""; 
+				newPiece.name = "";
+				int index = horizontal*i + j;
+				gameTime[index] = newPiece;
+			}
+		}
+		if (! readPieces(ifs, gameTime, horizontal, vertical)) {
+			return cantReadPieces;
+		}
+
+		return printBoard(gameTime, horizontal, vertical);
 	}
 	else {
 		return fileFailure();
 	}
+
 	return success;
 
 }
