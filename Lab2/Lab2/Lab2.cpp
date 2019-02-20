@@ -46,7 +46,9 @@ int main(int argc, char * argv[])
 			return cantReadPieces;
 		}
 
-		return printBoard(gameTime, horizontal, vertical); //print out the board
+		//return printBoard(gameTime, horizontal, vertical); //print out the board
+		printBoard(gameTime, horizontal, vertical);
+		return printInfo(gameTime, horizontal, vertical);
 	}
 	else {
 		return fileFailure();
