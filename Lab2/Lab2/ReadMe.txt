@@ -21,7 +21,7 @@ Extra Credit:
 My design was this:
 - iterate through every element being printed out.
 - for each element, check to see how many neighbors it had.
-- i did this by calculating the indexes of each neighbor. I commended in my code, so you can see my logic there.
+- i did this by calculating the indexes of each neighbor. I commented in my code, so you can see my logic there.
 - i checked to see if the neighbor existed to see if it was in range of board size, and then if it was, I 
 checked to see if the color existed.
 - If the color existed, this means that it is contained on the board. 
