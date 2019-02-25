@@ -1,10 +1,13 @@
-Grader's name:
-grader's initials(used to mark comments in your code):
-Grader's email:
+Grader's name: Mattison Hain
+grader's initials(used to mark comments in your code): mzh
+Grader's email: mzhain@wustl.edu
 
-Grade: /100
+Grade: 91/100
 
-Deductions: 
+Deductions: Extra Credit (+2), Faild test cases: bad color name and only one corrdinate in the file which crashed the program (-5)
+compulation warrings for converstion from size_t to int (-1) , code did not print anything out when asked to create or horizonal row (-5)
 The grader may leave comments throughout your graded code files. 
 Please search for the grader's initials above within you lab to find
 additional comments and feedback.
+
+For future labs make sure you catch all the possible errors in starting the program with unique user message
